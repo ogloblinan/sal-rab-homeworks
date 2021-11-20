@@ -32,22 +32,30 @@
 //      ]
 //    }
 // }
-
 function sendRequest(name, phone, address, goods, sum) {
-    let data = {goods: [], order: {}};
+    let data = {client: {name, phone}, order: {address, sum}, goods:[]};
 
     let countOfGoods = goods.length;
+    console.log(goods);
 
-    for (let i = 0; i <= countOfGoods; i += 1) {
-        data.goods.push(goods[i].title);
+
+    for (let i = 0; i < countOfGoods; i += 1) {
+        data.goods.push({title: goods[i].title, count: goods[i].count});
     }
+   
+    data.order.address = `ул. ${address.street}, дом ${address.house}, ${address.entrance} подъезд, ${address.floor} этаж, кв ${address.flat}`;
+    data.order.sum = sum;
 
-    data.order.address = address;
-    data.order.sum = name + phone + address + goods + sum;
-
-    data.client = 'Иван';
-
-    let jsonData = JSON.stringify(data);
+    data.client = name + " " + phone;
+    
+    let jsonData = JSON.stringify({data});
 
     return jsonData;
 }
+
+sendRequest
+let address1 = {street: "Старокрымская", house: 154, entrance: 3, floor: 2, flat: 519};
+let goods1 = [
+    {title: "Зубочистка", count: 33},
+    {title: "Ёршик", count: 1}];
+console.log(sendRequest("Валера", 8800, address1, goods1, 322));
