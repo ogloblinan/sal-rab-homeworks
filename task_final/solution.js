@@ -52,10 +52,3 @@ function sendRequest(name, phone, address, goods, sum) {
 
     return jsonData;
 }
-
-sendRequest
-let address1 = {street: "Старокрымская", house: 154, entrance: 3, floor: 2, flat: 519};
-let goods1 = [
-    {title: "Зубочистка", count: 33},
-    {title: "Ёршик", count: 1}];
-console.log(sendRequest("Валера", 8800, address1, goods1, 322));
